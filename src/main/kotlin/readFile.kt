@@ -1,5 +1,6 @@
 import java.io.File
 
+// Функция чтения из файла, чуть
 fun readIncidenceMatrix(path: String): List<IntArray> {
     val f = File(path)
     require(f.exists()) { "файл не найден: ${f.absolutePath}" }
@@ -11,11 +12,7 @@ fun readIncidenceMatrix(path: String): List<IntArray> {
     require(rawLines.isNotEmpty()) { "файл пуст: ${f.absolutePath}" }
 
     val rows: List<IntArray> = rawLines.mapIndexed { idx, line ->
-        try {
-            line.split(Regex("\\s+")).map { it.toInt() }.toIntArray()
-        } catch (e: NumberFormatException) {
-            error("строка ${idx + 1}: не число в «$line»")
-        }
+        line.split(Regex("\\s+")).map { it.toInt() }.toIntArray()
     }
 
     val m = rows[0].size

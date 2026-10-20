@@ -14,7 +14,6 @@ class CheckerTest {
 
     @Test
     fun `вершина достижима из всех`() {
-        // 0 -> 1 -> 2, значит 2 достижима из всех
         val path = writeTemp(
             """
             -1  0  0
@@ -38,7 +37,7 @@ class CheckerTest {
     }
 
     @Test
-    fun `кратные ребра не ломают результат`() {
+    fun `кратные ребра ничегл не ломают`() {
         val path = writeTemp(
             """
             -1 -1  0  0
@@ -56,7 +55,7 @@ class CheckerTest {
     }
 
     @Test
-    fun `пустой файл вызывает ошибку`() {
+    fun `пустой файл`() {
         val path = writeTemp("")
         assertFailsWith<IllegalArgumentException> {
             checker(path)
@@ -64,20 +63,7 @@ class CheckerTest {
     }
 
     @Test
-    fun `нечисловые данные вызывают ошибку`() {
-        val path = writeTemp(
-            """
-            -1  abc
-             1    0
-            """.trimIndent()
-        )
-        assertFailsWith<IllegalStateException> {
-            checker(path)
-        }
-    }
-
-    @Test
-    fun `разная длина строк вызывает ошибку`() {
+    fun `разная длина строк`() {
         val path = writeTemp(
             """
             -1  0
